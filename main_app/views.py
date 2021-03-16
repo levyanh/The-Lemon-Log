@@ -1,39 +1,68 @@
 from django.shortcuts import render
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, User
 from django.contrib.auth.decorators import login_required
+from .forms import UserForm, UserProfileInfoForm
 
 # Add home view:
-@login_required
 def home(request):
     return render(request, 'home.html')
 
 # Add about view:
-@login_required
 def about(request):
     return render(request,'about.html')
 
 # Add profile view:
 @login_required
 def profile(request):
+    # user = User.objects.all()
     return render(request,'profile.html')
 
 # Add signup view:
 def signup(request):
-  error_message = ''
+  # error_message = ''
+  registered = False
   if request.method == 'POST':
-    # This is how to create a 'user' form object
-    # that includes the data from the browser
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      # This will add the user to the database
-      user = form.save()
-      # This is how we log a user in via code
-      login(request, user)
-      return redirect('home')
-    else:
-      error_message = 'Invalid sign up - try again'
-  # A GET or a bad POST request, so render signup.html with an empty form
-  form = UserCreationForm()
-  context = {'form': form, 'error_message': error_message}
+    # Get info from "both" forms
+    # It appears as one form to the user on the .html page
+    user_form = UserForm(data=request.POST)
+    profile_form = UserProfileInfoForm(data=request.POST)
+
+    # Check to see both forms are valid
+    if user_form.is_valid() and profile_form.is_valid():
+          
+      # Save User Form to Database
+      user = user_form.save()
+      # Hash the password
+      user.set_password(user.password)
+      # Update with Hashed password
+      user.save()
+
+      # Now we deal with the extra info!
+      # Can't commit yet because we still need to manipulate
+      profile = profile_form.save(commit=False)
+      # Set One to One relationship between
+      # UserForm and UserProfileInfoForm
+      profile.user = user
+      # Check if they provided a profile picture
+      if 'profile_pic' in request.FILES:
+        print('found it')
+        # If yes, then grab it from the POST form reply
+        profile.profile_pic = request.FILES['profile_pic']
+        # Now save model
+        profile.save()
+        # Registration Successful!
+        registered = True
+        # login(request, user)
+        # return redirect('profile')
+      else:
+        # One of the forms was invalid if this else gets called.
+        print(user_form.errors,profile_form.errors)
+  else:
+      # Was not an HTTP post so we just render the forms as blank.
+    user_form = UserForm()
+    profile_form = UserProfileInfoForm()
+  # This is the render and context dictionary to feed
+  # back to the registration.html file page.
+  context = {'user_form': user_form, 'profile_form':profile_form, 'registered':registered}
   return render(request, 'registration/signup.html', context)
