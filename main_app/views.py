@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.forms import UserCreationForm, User
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, UserProfileInfoForm
+from .models import UserProfileInfo, Review, Comment
 from django.urls import reverse
 
 # Add home view:
@@ -17,8 +18,8 @@ def about(request):
 # Add profile view:
 @login_required
 def profile(request):
-    # user = User.objects.all()
-    return render(request,'profile.html')
+    profile = UserProfileInfo.objects.all()
+    return render(request,'profile.html',{"profile":profile})
 
 # Add signup view:
 def signup(request):
@@ -100,3 +101,11 @@ def user_login(request):
   else:
       #Nothing has been provided for username or password.
       return render(request, 'registration/login.html', {})
+
+# def user_profile_update(request):
+
+#   if request.method == 'POST':
+#         # Get info from "both" forms
+#     # It appears as one form to the user on the .html page
+#     user_form = UserForm(data=request.POST)
+#     profile_form = UserProfileInfoForm(data=request.POST)
