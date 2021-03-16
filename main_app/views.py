@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm, User
 from django.contrib.auth.decorators import login_required
@@ -20,7 +20,6 @@ def profile(request):
 
 # Add signup view:
 def signup(request):
-  # error_message = ''
   registered = False
   if request.method == 'POST':
     # Get info from "both" forms
@@ -53,11 +52,11 @@ def signup(request):
         profile.save()
         # Registration Successful!
         registered = True
-        # login(request, user)
-        # return redirect('profile')
       else:
         # One of the forms was invalid if this else gets called.
         print(user_form.errors,profile_form.errors)
+      login(request,user)
+      return redirect('profile')
   else:
       # Was not an HTTP post so we just render the forms as blank.
     user_form = UserForm()
