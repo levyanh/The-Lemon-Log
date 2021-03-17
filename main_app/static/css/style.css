@@ -1,0 +1,30 @@
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpaperaccess.com/full/1164874.jpg');
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: white;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.nav-wrapper, footer.page-footer {
+    background: rgba(0, 0, 0, 0.4);
+}
+.nav-wrapper {
+    float: right;
+    margin-right: 20px;
+}
+.nav-wrapper ul li {
+    display: inline-block;
+}
+
+main {
+    flex: 1 0 auto;
+}
+footer {
+    padding-top: 0;
+    text-align:center;
+}
