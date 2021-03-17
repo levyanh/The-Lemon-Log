@@ -7,6 +7,7 @@
     <p>Email: {{user.email}}</p>
     <p>Join date: {{user.date_joined}}</p>
     <p>Last login On: {{user.last_login}}</p>
+    <p>Date Joined: {{ user.date_joined }}</p>
     <form enctype="multipart/form-data" method="POST">
       {% csrf_token %}
       {{ u_form.as_p }}
