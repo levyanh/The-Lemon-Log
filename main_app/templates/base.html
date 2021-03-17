@@ -6,15 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Lemon Log</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
-  <header class="navbar-fixed">
+  <header>
     <nav>
-      <div class="nav-wrapper">
-        <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;&#127819;Lemon Log&#127819;</a></li>
+      <div class ="nav-wrapper">
+        <ul class="left">
+          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;&#127819; Lemon Log</a></li>
+          {% comment %} <li><a href="/" class="left brand-logo"><img src="image/logo.png" alt=""> {% endcomment %}
         </ul>
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
