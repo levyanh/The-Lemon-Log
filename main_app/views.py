@@ -3,8 +3,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.forms import UserCreationForm, User
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm, UserProfileInfoForm
-from .models import UserProfileInfo, Review, Comment
+from .forms import UserForm, UserProfileInfoForm, UserUpdateForm,ProfileUpdateForm
+from .models import Profile, Review, Comment
 from django.urls import reverse
 
 # Add home view:
@@ -18,8 +18,23 @@ def about(request):
 # Add profile view:
 @login_required
 def profile(request):
-    profile = UserProfileInfo.objects.all()
-    return render(request,'profile.html',{"profile":profile})
+  if request.method == 'POST':
+    u_form = UserUpdateForm(request.POST, instance=request.user)
+    p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+  
+    if u_form.is_valid() and p_form.is_valid():
+      u_form.save()
+      p_form.save()
+      return redirect('profile')
+  else:
+    u_form = UserUpdateForm(instance=request.user)
+    p_form = ProfileUpdateForm(instance=request.user.profile)
+  
+  context = {
+    'u_form' : u_form,
+    'p_form' : p_form
+  }
+  return render(request, 'profile.html',context)
 
 # Add signup view:
 def signup(request):
@@ -109,3 +124,36 @@ def user_login(request):
 #     # It appears as one form to the user on the .html page
 #     user_form = UserForm(data=request.POST)
 #     profile_form = UserProfileInfoForm(data=request.POST)
+
+# @login_required
+# def profile(request):
+#     if request.method == 'POST':
+#         profile_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
+#         user_form = UserUpdateForm(request.POST,instance=request.user)
+#         if profile_form.is_valid() and user_form.is_valid():
+#             user_form.save()
+#             profile_form.save()
+#             messages.success(request,'Your Profile has been updated!')
+#             return redirect('profile')
+#     else:
+#         profile_form = ProfileUpdateForm(instance=request.user)
+#         user_form = UserUpdateForm(instance=request.user.profile)
+
+#     context={'profile_form': profile_form, 'user_form': user_form}
+#     return render(request, 'profile.html',context )
+
+# views.py
+# @login_required
+# def edit_names(request, template_name="profile.html"):
+#     if request.method == "POST":
+#         form = UserForm(data=request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.save()
+#             url = urlresolvers.reverse('profile')
+#             return HttpResponseRedirect(url)
+#     else:
+#         form = UserForm(instance=request.user)
+#     page_title = _('Edit user names')
+#     return render_to_response(template_name, locals(),
+#         context_instance=RequestContext(request))
