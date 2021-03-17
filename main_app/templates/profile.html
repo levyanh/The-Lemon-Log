@@ -2,9 +2,15 @@
 {% block content %}
 <h1>Profile Page</h1>
 {% if user.is_authenticated %}
+    <img height=100 width=100 src="{{ user.profile.profile_pic.url }}" alt="no img">
     <h3>Welcome {{ user.username }}</h3>
     <p>Email: {{user.email}}</p>
     <p>Last login On: {{user.last_login}}</p>
-    <img src="{{ profile.profile_pic.url }}" alt="no img">
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      {{ u_form.as_p }}
+      {{ p_form.as_p }}
+      <input type="submit" class='btn' value="SignUp">
+    </form>
 {% endif %}
 {% endblock %}
