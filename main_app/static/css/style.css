@@ -9,22 +9,16 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
-
-.nav-wrapper, footer.page-footer {
-    background: rgba(0, 0, 0, 0.4);
-}
 .nav-wrapper {
-    float: right;
-    margin-right: 20px;
+    background-color: black;
 }
-.nav-wrapper ul li {
-    display: inline-block;
+.nav-wrapper, footer.page-footer {
+    background-color: black;
+    background: rgba(0, 0, 0, 0.5);
 }
-
 main {
     flex: 1 0 auto;
 }
 footer {
     padding-top: 0;
-    text-align:center;
 }
