@@ -16,6 +16,7 @@ class Review(models.Model):
     title = models.CharField(max_length=200)
     rating = models.IntegerField()
     description = models.TextField(max_length=2000)
+    review_image = models.ImageField(default='default2.jpg',upload_to="review_pics")
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     author = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -32,7 +33,7 @@ class Review(models.Model):
 
 class Comment(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    author = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default = False)
