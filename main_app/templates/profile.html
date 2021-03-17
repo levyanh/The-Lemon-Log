@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Profile Page</h1>
-{% if user.is_authenticated %}
-    <h3>Welcome {{ user.username }}</h3>
+<h2>Welcome {{ user.username }}!!!</h2>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"><b> Profile:</b></span>
+    {% if user.is_authenticated %}
     <p>Email: {{user.email}}</p>
+    <p>Join date: {{user.date_joined}}</p>
     <p>Last login On: {{user.last_login}}</p>
-    <img src="{{ profile.profile_pic.url }}" alt="no img">
+  </div>
+</div>
+<div class="avarta">
+    {% comment %} <img src="{{ profile.profile_pic.url }}" alt="no img"> {% endcomment %} 
+</div>
 {% endif %}
 {% endblock %}
