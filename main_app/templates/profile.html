@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Profile Page</h1>
+<h1 class="center">Welcome {{ user.username }}</h1>
 {% if user.is_authenticated %}
-    <img height=100 width=100 src="{{ user.profile.profile_pic.url }}" alt="no img">
-    <h3>Welcome {{ user.username }}</h3>
-    <p>Email: {{user.email}}</p>
+    <img class="avarta" src="{{ user.profile.profile_pic.url }}" alt="no img">
     <p>Join date: {{user.date_joined}}</p>
     <p>Last login On: {{user.last_login}}</p>
+    <h4>Update your profile</h4>
     <form enctype="multipart/form-data" method="POST">
       {% csrf_token %}
       {{ u_form.as_p }}
-      {{ p_form.as_p }}
+      {{ p_form.as_p }}<br>
       <input type="submit" class='btn' value="SignUp">
     </form>
 {% endif %}
