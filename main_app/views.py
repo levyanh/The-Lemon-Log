@@ -3,10 +3,11 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.forms import UserCreationForm, User
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm, UserProfileInfoForm, UserUpdateForm,ProfileUpdateForm, CommentForm
+from .forms import UserForm, UserProfileInfoForm, UserUpdateForm,ProfileUpdateForm, CommentForm, CommentUpdateForm, ReviewForm
 from .models import Profile, Review, Comment
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 # Add home view:
 def home(request):
@@ -39,31 +40,21 @@ def add_comment_to_review(request, review_id):
         comment_form = CommentForm()
     return render(request, 'reviews/review_comments.html', {"comment_form" : comment_form})
 
-
-
-# @login_required
-# def add_comment_to_review(request, review_id):
-#     review = get_object_or_404(Review, id=review_id)
-#     comment_form = CommentForm(request.POST or None)
-#     comment_form.instance.user = request.user
-#     if request.POST and comment_form.is_valid():
-#         new_comment = comment_form.save(commit=False)
-#         new_comment.review = review
-#         new_comment.save()
-#         return redirect('review_detail',review_id=review_id)
-#     else:
-#         comment_form = CommentForm()
-#     return render(request, 'reviews/review_comments.html', {"comment_form" : comment_form})
-
-# @login_required
-# def comment_approve(request, comment_id):
-#     comment = get_object_or_404(Comment, id=comment_id)
-#     comment.approve()
-#     return redirect('review_detail', comment_id=comment.review.id)
+@login_required
+def comment_edit(request, review_id, comment_id):
+    review = get_object_or_404(Review, id=review_id)
+    comment = get_object_or_404(Comment, id=comment_id)
+    comment_form = CommentUpdateForm(request.POST or None,instance=comment)
+    if request.POST and comment_form.is_valid():
+          comment_form.save()
+          return redirect('review_detail',review_id=review_id)
+    else:
+        comment_form = CommentUpdateForm()
+    return render(request, 'comments/edit_comments.html', {"comment_form" : comment_form})
 
 
 @login_required
-def comment_remove(request,review_id, comment_id):
+def comment_remove(request, review_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     review_id = comment.review.id
     if request.method == 'POST':
@@ -178,3 +169,38 @@ def user_login(request):
       #Nothing has been provided for username or password.
       return render(request, 'registration/login.html', {})
 
+##################################
+# CREATE - EDIT - DELETE - REVIEWS
+##################################
+
+# create new review
+@login_required
+def review_new(request):
+      review_form = ReviewForm(request.POST or None)
+      if request.POST and review_form.is_valid:
+            new_review = review_form.save(commit=False)
+            new_review.author = request.user
+            new_review.save()
+            return redirect('home')
+      else:
+            return render(request, "reviews/review_new.html", {"review_form" : review_form})
+
+# edit a review
+@login_required
+def review_edit(request, review_id):
+      review = Review.objects.get(id=review_id)
+      review_form = ReviewForm(request.POST or None, instance=review)
+      if request.POST and review_form.is_valid:
+            review_form.save()
+            return redirect('review_detail',review_id=review_id)
+      else:
+            return render(request, 'reviews/review_edit.html',{'review':review,'review_form':review_form})
+
+# delete a review
+@login_required
+def review_delete(request,review_id):
+      Review.objects.get(id=review_id).delete()
+      return redirect('home')
+
+
+  

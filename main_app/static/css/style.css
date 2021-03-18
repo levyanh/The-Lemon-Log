@@ -56,7 +56,14 @@ img {
   height: 150px;
   width: 150px;
 }
+.profile {
+  margin-top: 100px;
+}
 /* ---------Review page--------- */
 .row {
+  margin-top: 100px;
+}
+
+.addreview {
   margin-top: 100px;
 }
