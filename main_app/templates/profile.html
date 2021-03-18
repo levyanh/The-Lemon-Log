@@ -1,5 +1,6 @@
 {% extends 'base2.html' %}
 {% block content %}
+<div class="profile">
 <h1 class="center">Welcome {{ user.username }}</h1>
 {% if user.is_authenticated %}
   <div class="center">
@@ -12,7 +13,8 @@
       {% csrf_token %}
       {{ u_form.as_p }}
       {{ p_form.as_p }}<br>
-      <input type="submit" class='btn' value="Update">
+      <input type="submit" class='btn yellow darken-2' value="Update">
     </form>
+</div>
 {% endif %}
 {% endblock %}

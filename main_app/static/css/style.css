@@ -8,7 +8,6 @@ body {
   min-height: 100vh;
   flex-direction: column;
   color: white;
-  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 main {
   flex: 1 0 auto;
@@ -18,15 +17,14 @@ label {
 }
 nav {
   position: fixed;
-  background-color: transparent !important;
+  z-index: 9999;
 }
 nav ul li a {
   font-size: 20px;
-  color: rgb(219, 219, 79);
-  padding-right: 20px;
+  color: rgb(241, 213, 52);
 }
 .right {
-  color: rgb(219, 219, 79);
+  color: rgb(241, 213, 52);
 }
 .logo {
   width: 100px;
@@ -58,7 +56,14 @@ img {
   height: 150px;
   width: 150px;
 }
+.profile {
+  margin-top: 100px;
+}
 /* ---------Review page--------- */
 .row {
+  margin-top: 100px;
+}
+
+.addreview {
   margin-top: 100px;
 }
