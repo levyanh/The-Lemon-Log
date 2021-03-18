@@ -1,0 +1,12 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+    <h1>Create a new Review Page ---></h1>
+
+    <form method="POST" action="{% url 'review_new' %}">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <input type="submit" class="btn" value="Add Review">
+    </form>
+{% endblock content %}
+
