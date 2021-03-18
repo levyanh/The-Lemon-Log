@@ -6,31 +6,55 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserForm, UserProfileInfoForm, UserUpdateForm,ProfileUpdateForm, CommentForm
 from .models import Profile, Review, Comment
 from django.urls import reverse
+from django.shortcuts import get_object_or_404
 
 # Add home view:
 def home(request):
   review = Review.objects.all()
   return render(request, 'home.html',{"reviews":review})
-# Add comment:
-def new_comments(request):
-      pass
+  
 # Add review_detail:
 def reviews_detail(request, review_id):
-  comment = Comment.objects.all()
-  review = Review.objects.get(id=review_id)
-  comment_form = CommentForm(request.POST or None)
-  if request.POST and comment_form.is_valid():
-      new_comment = comment_form.save(commit=False)
-      new_comment.user = request.user
-      new_comment.save()
-      return redirect('review_detail')
-  else:
-    context = {
-      "comments" : comment,
-      "review" : review,
-      "comment_form" : comment_form
-    }  
+  review = get_object_or_404(Review, id=review_id)
+  # comments = review.comments.filter(active=True)
+  comments = review.comments.all()
+  context = {
+    "comments" : comments,
+    "review" : review,
+  }  
   return render(request, "reviews/review_detail.html", context)
+
+@login_required
+def add_comment_to_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    comment_form = CommentForm(request.POST or None)
+    comment_form.instance.user = request.user
+    if request.POST and comment_form.is_valid():
+        new_comment = comment_form.save(commit=False)
+        new_comment.review = review
+        new_comment.save()
+        return redirect('review_detail',review_id=review_id)
+    else:
+        comment_form = CommentForm()
+    return render(request, 'reviews/review_comments.html', {"comment_form" : comment_form})
+
+# @login_required
+# def comment_approve(request, comment_id):
+#     comment = get_object_or_404(Comment, id=comment_id)
+#     comment.approve()
+#     return redirect('review_detail', comment_id=comment.review.id)
+
+
+@login_required
+def comment_remove(request,review_id, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    review_id = comment.review.id
+    if request.method == 'POST':
+      comment.delete()
+      return redirect('review_detail', review_id=review_id)
+    else:
+      return render(request,'comments/comment_delete.html')
+
 # Add about view:
 def about(request):
     return render(request,'about.html')
