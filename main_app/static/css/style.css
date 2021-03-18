@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpaperaccess.com/full/1164874.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/originals/e6/a0/ec/e6a0ec6f22a505603ff90fbea89031cd.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -18,10 +18,9 @@ label {
 nav {
   position: fixed;
   background-color: transparent !important;
-  padding: 0px 20px;;
 }
 .logo {
-  width: 70px;
+  width: 100px;
 }
 footer.page-footer {
   background: rgba(0, 0, 0, 0.2);
@@ -48,5 +47,5 @@ img {
 }
 /* ---------Review page--------- */
 .row {
-  margin-top: 100px ;
+  margin-top: 100px;
 }
