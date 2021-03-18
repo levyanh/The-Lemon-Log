@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.forms import UserCreationForm, User
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm, UserProfileInfoForm, UserUpdateForm,ProfileUpdateForm, CommentForm, CommentUpdateForm
+from .forms import UserForm, UserProfileInfoForm, UserUpdateForm,ProfileUpdateForm, CommentForm, CommentUpdateForm, ReviewForm
 from .models import Profile, Review, Comment
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
@@ -168,3 +168,38 @@ def user_login(request):
       #Nothing has been provided for username or password.
       return render(request, 'registration/login.html', {})
 
+##################################
+# CREATE - EDIT - DELETE - REVIEWS
+##################################
+
+# create new review
+@login_required
+def review_new(request):
+      review_form = ReviewForm(request.POST or None)
+      if request.POST and review_form.is_valid:
+            new_review = review_form.save(commit=False)
+            new_review.author = request.user
+            new_review.save()
+            return redirect('home')
+      else:
+            return render(request, "reviews/review_new.html", {"review_form" : review_form})
+
+# edit a review
+@login_required
+def review_edit(request, review_id):
+      review = Review.objects.get(id=review_id)
+      review_form = ReviewForm(request.POST or None, instance=review)
+      if request.POST and review_form.is_valid:
+            review_form.save()
+            return redirect('review_detail',review_id=review_id)
+      else:
+            return render(request, 'reviews/review_edit.html',{'review':review,'review_form':review_form})
+
+# delete a review
+@login_required
+def review_delete(request,review_id):
+      Review.objects.get(id=review_id).delete()
+      return redirect('home')
+
+
+  

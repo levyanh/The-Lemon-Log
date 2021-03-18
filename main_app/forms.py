@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Comment
+from .models import Profile, Comment, Review
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -43,3 +43,8 @@ class CommentUpdateForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['text']
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ["title", "review_image", "description","rating"]

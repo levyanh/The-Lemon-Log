@@ -11,5 +11,8 @@ urlpatterns = [
   path('user_login/',views.user_login,name='user_login'),
   path('reviews/<int:review_id>/comment/<int:comment_id>/edit/', views.comment_edit, name='comment_edit'),
   path('reviews/<int:review_id>/comment/<int:comment_id>/remove/', views.comment_remove, name='comment_remove'),
+  path('reviews/new', views.review_new, name="review_new"),
+  path('reviews/<int:review_id>/edit/', views.review_edit, name = "review_edit"),
+  path("reviews/<int:review_id>/delete/", views.review_delete, name = "review_delete"),
 ]
 
