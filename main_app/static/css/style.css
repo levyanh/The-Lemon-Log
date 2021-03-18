@@ -18,15 +18,14 @@ label {
 }
 nav {
   position: fixed;
-  background-color: transparent !important;
+  z-index: 9999;
 }
 nav ul li a {
   font-size: 20px;
-  color: rgb(219, 219, 79);
-  padding-right: 20px;
+  color: rgb(241, 213, 52);
 }
 .right {
-  color: rgb(219, 219, 79);
+  color: rgb(241, 213, 52);
 }
 .logo {
   width: 100px;
