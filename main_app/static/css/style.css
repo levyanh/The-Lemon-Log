@@ -1,50 +1,52 @@
 body {
-  background: black;
-    /* background-image: url(https://promptinnov.com/wp-content/uploads/2016/03/globe-bg.jpg); */
-    /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpaperaccess.com/full/1164874.jpg'); */
-    /* background-repeat: no-repeat; 
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center; */
-    color: white;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-nav{
-    position: fixed;
-    background-color: transparent !important;
-    padding: 0px 20px;;
-  }
-  .nav-wrapper a{
-    color: rgb(255, 255, 255) !important;
-  }  
-.wide-header {
-  background-image: url("https://wallpaperaccess.com/full/1164874.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpaperaccess.com/full/1164874.jpg');
+  background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
-  height: 700px;ß;
+  background-attachment: fixed;
+  background-position: center;
+  color: white;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
-
-footer.page-footer {
-    background: rgba(0, 0, 0, 0.2);
-    padding-top: 0;
-}
-
 main {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
-.card-content {
-    background-color: rgb(41, 40, 40);
+label {
+  text-transform: uppercase;
+}
+nav {
+  position: fixed;
+  background-color: transparent !important;
+  padding: 0px 20px;;
+}
+.logo {
+  width: 70px;
+}
+footer.page-footer {
+  background: rgba(0, 0, 0, 0.2);
+  padding-top: 0;
 }
 img {
-    width: 20%;
-    height: 100%;
-    margin: 30px auto;
+  width: 100%;
+  height: 100%;
+}
+/* ---------Homepage----------- */
+.box {
+  margin: 100px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3em;
+  grid-auto-rows: auto;
   }
+
 /* -------Profile page-------- */
 .avarta {
   border-radius: 50%;
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
+}
+/* ---------Review page--------- */
+.row {
+  margin-top: 100px ;
 }

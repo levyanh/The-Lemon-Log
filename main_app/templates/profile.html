@@ -2,15 +2,17 @@
 {% block content %}
 <h1 class="center">Welcome {{ user.username }}</h1>
 {% if user.is_authenticated %}
+  <div class="center">
     <img class="avarta" src="{{ user.profile.profile_pic.url }}" alt="no img">
     <p>Join date: {{user.date_joined}}</p>
-    <p>Last login On: {{user.last_login}}</p>
+    <p>Last login On: {{user.last_login}}</p> <br>
     <h4>Update your profile</h4>
+  </div>
     <form enctype="multipart/form-data" method="POST">
       {% csrf_token %}
       {{ u_form.as_p }}
       {{ p_form.as_p }}<br>
-      <input type="submit" class='btn' value="SignUp">
+      <input type="submit" class='btn' value="Update">
     </form>
 {% endif %}
 {% endblock %}
