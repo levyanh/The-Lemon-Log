@@ -26,12 +26,14 @@
                 {% endif %}
                 {% for comment in comments %}
                     <br>
-                        {{ comment.created_date }}
-                        <p>{{ comment.text|safe|linebreaks }}</p>
-                        <p>Posted by: <strong>@{{ comment.user }}</strong></p>
                         <div class="card-action">
-                            <a class="btn" href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
-                            <a class="btn" href="{% url 'comment_edit' review.id comment.id %}">Edit</a>
+                            {{ comment.created_date }}
+                            <p>{{ comment.text|safe|linebreaks }}</p>
+                            <p>Posted by: <strong>@{{ comment.user }}</strong></p>
+                            {% if user.id == comment.user_id or user.id == review.author_id%}
+                                <a class="btn" href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
+                                <a class="btn" href="{% url 'comment_edit' review.id comment.id %}">Edit</a>
+                            {% endif %} 
                         </div>
                 {% endfor %}
             </div>

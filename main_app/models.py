@@ -34,7 +34,7 @@ class Review(models.Model):
 class Comment(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User,on_delete=models.CASCADE,editable=False)
-    text = models.TextField()
+    text = models.TextField(max_length=240)
     created_date = models.DateTimeField(default=timezone.now)
     active = models.BooleanField(default = False)
 
