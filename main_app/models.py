@@ -33,17 +33,20 @@ class Review(models.Model):
 
 class Comment(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
-    author = models.CharField(max_length=200)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,editable=False)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
-    approved_comment = models.BooleanField(default = False)
+    active = models.BooleanField(default = False)
 
     def approve(self):
         self.approved_comment = True
         self.save()
 
+    class Meta:
+        ordering = ['created_date']
+
     def __str__(self):
-        return self.text
+        return 'Comment {} by {}'.format(self.text, self.user)
 
 
 
