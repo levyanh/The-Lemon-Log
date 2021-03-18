@@ -1,20 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Review page</h1>
-    <div class="col s12 m6">
-        <div class="card black">
-            <div class="card-content white-text">
-                <img src="{{ review.author.profile.profile_pic.url }}" alt="no img">
-                <span class="card-title">{{review.title}}</span>
-                <p>Rating: {{review.rating}} </p>
-                <p>{{ review.description }}</p>
-                <p>By @{{review.author}}</p>
-            </div>
-            <div class="card-action">
-              <a href="#">Read more</a>
-            </div>
-        </div>
+<div class="card grey darken-3">
+  <div class="card-image">
+    <img src="{{review.review_image.url}}">
+      <div class="card-content">         
+        <h4>{{review.title}}</h4>
+        <p>Rating: {{review.rating}}</p>
+        <p>Author: {{review.author}}</p>
+        <p>Author email: {{ review.author.email }}</p><br>
+        <p>{{review.description}}</p>
+      </div>
     </div>
 
     {% comment %} Comment to add {% endcomment %}
@@ -22,7 +18,7 @@
     <a class="btn" href="{% url 'add_comment_to_review' review.id %}">Add comment</a>
     <div class="card">
         {% if user.is_authenticated %}
-            <div class="card-content">
+            <div class="card-content red">
                 {% if comments.count == 1 %}
                     <h2>{{ comments.count }} comment</h2>
                 {% else %}
