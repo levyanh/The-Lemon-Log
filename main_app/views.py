@@ -24,6 +24,7 @@ def reviews_detail(request, review_id):
   }  
   return render(request, "reviews/review_detail.html", context)
 
+
 @login_required
 def add_comment_to_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
@@ -37,6 +38,22 @@ def add_comment_to_review(request, review_id):
     else:
         comment_form = CommentForm()
     return render(request, 'reviews/review_comments.html', {"comment_form" : comment_form})
+
+
+
+# @login_required
+# def add_comment_to_review(request, review_id):
+#     review = get_object_or_404(Review, id=review_id)
+#     comment_form = CommentForm(request.POST or None)
+#     comment_form.instance.user = request.user
+#     if request.POST and comment_form.is_valid():
+#         new_comment = comment_form.save(commit=False)
+#         new_comment.review = review
+#         new_comment.save()
+#         return redirect('review_detail',review_id=review_id)
+#     else:
+#         comment_form = CommentForm()
+#     return render(request, 'reviews/review_comments.html', {"comment_form" : comment_form})
 
 # @login_required
 # def comment_approve(request, comment_id):
