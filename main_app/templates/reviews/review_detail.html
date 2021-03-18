@@ -16,21 +16,33 @@
             </div>
         </div>
     </div>
-    <!-- comments -->
-    {% if user.is_authenticated %}
-            <p>Comments</p>
-            <ol>
-                {% for comment in comments %}
-                    <li>{{ comment.text }} - <span>{{ comment.author }}</span></li>
-                {% endfor %}
-            </ol>
-         <form method="POST">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <input type="submit" class="btn" value="Add Comment">
-        </form>
-    {% endif %}
-   
 
+    {% comment %} Comment to add {% endcomment %}
+    <hr>
+    <a class="btn" href="{% url 'add_comment_to_review' review.id %}">Add comment</a>
+    <div class="card">
+        {% if user.is_authenticated %}
+            <div class="card-content">
+                {% if comments.count == 1 %}
+                    <h2>{{ comments.count }} comment</h2>
+                {% else %}
+                    <h2>{{ comments.count }} comments</h2>
+                {% endif %}
+                {% for comment in comments %}
+                    <br>
+                        {{ comment.created_date }}
+                        <p>{{ comment.text|safe|linebreaks }}</p>
+                        <p>Posted by: <strong>@{{ comment.user }}</strong></p>
+                        <div class="card-action">
+                            <a class="btn" href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
+                            {% comment %} <a class="btn" href="{% url 'comment_approve' comment.id %}"><span class="glyphicon glyphicon-ok"></span></a> {% endcomment %}
+                        </div>
+                    
+                {% empty %}
+                    <p>No comments posted.</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 {% endblock content %}
 
