@@ -19,8 +19,8 @@
     <div class="card">
         {% if user.is_authenticated %}
             <div class="card-content red">
-                {% if comments.count == 1 %}
-                    <h2>{{ comments.count }} comment</h2>
+                {% if comments.count == 0 %}
+                    <h4>No comments posted!</h4>
                 {% else %}
                     <h2>{{ comments.count }} comments</h2>
                 {% endif %}
@@ -33,9 +33,6 @@
                             <a class="btn" href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
                             {% comment %} <a class="btn" href="{% url 'comment_approve' comment.id %}"><span class="glyphicon glyphicon-ok"></span></a> {% endcomment %}
                         </div>
-                    
-                {% empty %}
-                    <p>No comments posted.</p>
                 {% endfor %}
             </div>
         {% endif %}
