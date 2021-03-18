@@ -31,7 +31,7 @@
                         <p>Posted by: <strong>@{{ comment.user }}</strong></p>
                         <div class="card-action">
                             <a class="btn" href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
-                            {% comment %} <a class="btn" href="{% url 'comment_approve' comment.id %}"><span class="glyphicon glyphicon-ok"></span></a> {% endcomment %}
+                            <a class="btn" href="{% url 'comment_edit' review.id comment.id %}">Edit</a>
                         </div>
                 {% endfor %}
             </div>
