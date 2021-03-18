@@ -8,15 +8,15 @@
   <title>Lemon Log</title>
   <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
   <header>
     <nav>
       <div class ="nav-wrapper">
         <ul class="left">
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;&#127819; Lemon Log</a></li>
-          {% comment %} <li><a href="/" class="left brand-logo"><img src="image/logo.png" alt=""> {% endcomment %}
+          <li><a href="/" class="logo"><img src="/static/lemonlog.png"</a></li>
         </ul>
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
@@ -30,6 +30,10 @@
         </ul>
       </div>
     </nav>
+  <div class="wide-header">
+    <img src="https://cdn.shopify.com/s/files/1/1520/4366/files/satechi_2020_05_29_img4_desktop_rev1_cc81ff88-7d42-43d2-9143-a82267b8d64a.jpg?v=15956043" alt="">
+    </div> 
+    </div>
   </header>
   <main class="container">
     {% block content %}

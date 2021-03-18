@@ -10,14 +10,11 @@
 <form method="post" action="{% url 'user_login' %}">
   {% csrf_token %}
   <label for="username">Username:</label>
-  <input type="text" name="username" placeholder="Username">
-
-  <label for="email">Email:</label>
-  <input type="text" name="email" placeholder="Email">
+  <input type="text" name="username">
 
   <label for="password">Password:</label>
   <input type="password" name="password">
 
-  <input type="submit" name="" value="Login">
+  <input type="submit" class='btn' value="Login">
 </form>
 {% endblock %}
