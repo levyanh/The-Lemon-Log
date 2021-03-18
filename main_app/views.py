@@ -25,6 +25,7 @@ def reviews_detail(request, review_id):
   }  
   return render(request, "reviews/review_detail.html", context)
 
+
 @login_required
 def add_comment_to_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)

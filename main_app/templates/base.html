@@ -9,11 +9,11 @@
   <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
   <header>
-    <nav>
+    <nav class="black">
       <div class ="nav-wrapper">
         <ul class="left">
           <li><a href="/" class="logo"><img src="/static/lemonlog.png"</a></li>
@@ -31,6 +31,31 @@
         </ul>
       </div>
     </nav>
+  <section class="slider">
+    <ul class="slides">
+      <li>
+        <img src="https://cdn.shopify.com/s/files/1/1520/4366/files/satechi_2020_05_29_img4_desktop_rev1_cc81ff88-7d42-43d2-9143-a82267b8d64a.jpg?v=15956043"> 
+        <div class="caption center-align">
+          <h2> Lemon Log </h2>
+          <h5>The leading destination for tech enthusiasts of all skill levels</h5>
+        </div>
+      </li>
+      <li>
+        <img src="https://cdn.shopify.com/s/files/1/1520/4366/files/satechi_2020_05_29_img4_desktop_rev1_cc81ff88-7d42-43d2-9143-a82267b8d64a.jpg?v=15956043">
+        <div class="caption left-align">
+          <h2>Lemon Log</h2>
+          <h5>The leading destination for tech enthusiasts of all skill levels</h5>
+        </div>
+      </li>
+      <li>
+        <img src="https://cdn.shopify.com/s/files/1/1520/4366/files/satechi_2020_05_29_img4_desktop_rev1_cc81ff88-7d42-43d2-9143-a82267b8d64a.jpg?v=15956043"> 
+        <div class="caption right-align">
+          <h2>Lemon Log</h2>
+          <h5>The leading destination for tech enthusiasts of all skill levels</h5>
+        </div>
+      </li>
+    </ul>      
+</section>
     {% if messages %}
       {%for message in messages %}
           {% if message.tags == 'success' %}
@@ -41,10 +66,7 @@
                <script>M.toast({html: "{{message}}", classes:'red rounded', displayLength:2000});</script>
           {% endif %}
       {% endfor %}
-    {% endif %}
-  <div class="wide-header">
-    <img src="https://cdn.shopify.com/s/files/1/1520/4366/files/satechi_2020_05_29_img4_desktop_rev1_cc81ff88-7d42-43d2-9143-a82267b8d64a.jpg?v=15956043" alt="">
-  </div> 
+    {% endif %} 
   </header>
   <main class="container">
     {% block content %}
@@ -53,5 +75,14 @@
   <footer class="page-footer">
     <div class="right">All Rights Reserved, &copy; 2021 Lemon Log &nbsp;</div>
   </footer>
+  <script>
+const slider = document.querySelector(".slider");
+M.Slider.init(slider, {
+  indicators: false,
+  height: 600,
+  transition: 500,
+  interval: 5000
+})
+</script
 </body>
 </html>

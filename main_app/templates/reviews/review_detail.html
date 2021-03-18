@@ -21,15 +21,14 @@
     </div>
 
     {% comment %} Comment to add {% endcomment %}
-    <hr>
-    <a class="btn" href="{% url 'add_comment_to_review' review.id %}">Add comment</a>
+    <a class="btn yellow darken-2" href="{% url 'add_comment_to_review' review.id %}">comment</a>
     <div class="card">
         {% if user.is_authenticated %}
-            <div class="card-content red">
+            <div class="card-content grey darken-3">
                 {% if comments.count == 0 %}
                     <h4>No comments posted!</h4>
                 {% else %}
-                    <h2>{{ comments.count }} comments</h2>
+                    <h3>{{ comments.count }} comments</h3>
                 {% endif %}
                 {% for comment in comments %}
                     <br>
@@ -38,8 +37,8 @@
                             <p>{{ comment.text|safe|linebreaks }}</p>
                             <p>Posted by: <strong>@{{ comment.user }}</strong></p>
                             {% if user.id == comment.user_id or user.id == review.author_id%}
-                                <a class="btn" href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
-                                <a class="btn" href="{% url 'comment_edit' review.id comment.id %}">Edit</a>
+                                <a class="btn yellow darken-2" href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
+                                <a class="btn yellow darken-2" href="{% url 'comment_edit' review.id comment.id %}">Edit</a>
                             {% endif %} 
                         </div>
                 {% endfor %}
