@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Create a new Review Page ---></h1>
+<h1>Add A New Review</h1>
 <form method="POST" action="{% url 'review_new' %}">
     {% csrf_token %}
     {{ review_form.as_p }}
