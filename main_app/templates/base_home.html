@@ -14,7 +14,7 @@
 </head>
 <body>
   <header>
-    <nav class="black">
+    <nav class="navbar">
       <div class ="nav-wrapper">
         <ul class="left">
           <li><a href="/" class="logo"><img src="/static/lemonlog.png"></a></li>
@@ -32,6 +32,31 @@
         </ul>
       </div>
     </nav>
+  <section class="slider">
+    <ul class="slides">
+      <li>
+        <a href="/about" class="logo"><img src="media/review_pics/microsoft.jpg"></a>       
+        <div class="caption center-align">
+          <h2> Lemon Log </h2>
+          <h5>The leading destination for tech enthusiasts of all skill levels</h5>
+        </div>
+      </li>
+      <li>
+        <a href="/about" class="logo"><img src="media/review_pics/watch.jpg"></a>        
+        <div class="caption left-align">
+          <h2>Lemon Log</h2>
+          <h5>The leading destination for tech enthusiasts of all skill levels</h5>
+        </div>
+      </li>
+      <li>
+        <a href="/about" class="logo"><img src="media/review_pics/canon.jpg"></a>        
+        <div class="caption right-align">
+          <h2>Lemon Log</h2>
+          <h5>The leading destination for tech enthusiasts of all skill levels</h5>
+        </div>
+      </li>
+    </ul>      
+</section>
     {% if messages %}
       {%for message in messages %}
           {% if message.tags == 'success' %}
@@ -44,27 +69,33 @@
       {% endfor %}
     {% endif %} 
   </header>
-  <main>
-  <div id="main-container">
+  <main class="container">
     {% block content %}
     {% endblock %}
-  </div>
   </main>
   <footer class="page-footer">
-        <a href="/">Contact Us | </a>
-        <a href="/">FAQ | </a>
-        <a href="/">Reviews | </a>
-        <a href="/">Blog | </a>
-        <a href="/">Privacy Police | </a>
-        <a href="/">Legal Stuff</a>
-        <h5>Follow Us On Social Media</h5>
-        <a href="/"><i class="fab fa-facebook fa-3x yellow-text darken-3"></i></a>
-        <a href="/"><i class="fab fa-twitter fa-3x yellow-text darken-3"></i></a>
-        <a href="/"><i class="fab fa-instagram fa-3x yellow-text darken-3"></i></a>
-        <a href="/"><i class="fab fa-google fa-3x yellow-text darken-3"></i></a>
-        <a href="/"><i class="fab fa-linkedin fa-3x yellow-text darken-3"></i></a>
-        <p>Copyright&copy; 2021 Lemon Log. All Rights Reserved.</p>
+    <a href="/">Contact Us | </a>
+    <a href="/">FAQ | </a>
+    <a href="/">Reviews | </a>
+    <a href="/">Blog | </a>
+    <a href="/">Privacy Police | </a>
+    <a href="/">Legal Stuff</a>
+    <h5>Follow Us On Social Media</h5>
+    <a href="/"><i class="fab fa-facebook fa-3x yellow-text darken-3"></i></a>
+    <a href="/"><i class="fab fa-twitter fa-3x yellow-text darken-3"></i></a>
+    <a href="/"><i class="fab fa-instagram fa-3x yellow-text darken-3"></i></a>
+    <a href="/"><i class="fab fa-google fa-3x yellow-text darken-3"></i></a>
+    <a href="/"><i class="fab fa-linkedin fa-3x yellow-text darken-3"></i></a>
+    <p>Copyright&copy; 2021 Lemon Log. All Rights Reserved.</p>
   </footer>
-    <script src="{% static "js/main.js"%}" type="text/javascript" ></script>
+<script>
+const slider = document.querySelector(".slider");
+M.Slider.init(slider, {
+  indicators: false,
+  height: 600,
+  transition: 500,
+  interval: 5000
+})
+</script
 </body>
 </html>
