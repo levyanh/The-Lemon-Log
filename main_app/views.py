@@ -176,9 +176,9 @@ def review_new(request):
           if 'review_image' in request.FILES:
             print('found it')
             new_review.review_image = request.FILES['review_image']
-            new_review.save()
           else:
             print("errors")
+          new_review.save()
           return redirect('home')
       else:
             return render(request, "reviews/review_new.html", {"review_form" : review_form})
@@ -189,8 +189,14 @@ def review_edit(request, review_id):
       review = Review.objects.get(id=review_id)
       review_form = ReviewForm(request.POST or None, instance=review)
       if request.POST and review_form.is_valid:
-            review_form.save()
-            return redirect('review_detail',review_id=review_id)
+          new_review = review_form.save(commit=False)
+          if 'review_image' in request.FILES:
+              print('found it')
+              new_review.review_image = request.FILES['review_image']
+          else:
+            print("errors")
+          review_form.save()
+          return redirect('review_detail',review_id=review_id)
       else:
             return render(request, 'reviews/review_edit.html',{'review':review,'review_form':review_form})
 
