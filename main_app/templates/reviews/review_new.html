@@ -1,14 +1,11 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="addreview">
-    <h1>Create a new Review Page ---></h1>
-
-    <form method="POST" action="{% url 'review_new' %}">
-        {% csrf_token %}
-        {{ review_form.as_p }}
-        <input type="submit" class="btn yellow darken-2" value="Add Review">
-    </form>
-</div>
+<h1>Create a new Review Page ---></h1>
+<form method="POST" action="{% url 'review_new' %}">
+    {% csrf_token %}
+    {{ review_form.as_p }}
+    <input type="submit" class="btn yellow darken-2" value="Add Review">
+</form>
 {% endblock content %}
 

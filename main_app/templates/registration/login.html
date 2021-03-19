@@ -1,14 +1,13 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
+
 {% block content %}
 <h1>Log In</h1>
 <form method="post" action="{% url 'user_login' %}">
   {% csrf_token %}
   <label for="username">Username:</label>
   <input type="text" name="username">
-
   <label for="password">Password:</label>
   <input type="password" name="password">
-
   <input type="submit" class='btn yellow darken-2' value="Login">
 </form>
 {% endblock %}
