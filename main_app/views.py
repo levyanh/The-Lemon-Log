@@ -25,7 +25,7 @@ def reviews_detail(request, review_id):
   }  
   return render(request, "reviews/review_detail.html", context)
 
-
+# Add comments to review
 @login_required
 def add_comment_to_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
@@ -40,6 +40,7 @@ def add_comment_to_review(request, review_id):
         comment_form = CommentForm()
     return render(request, 'reviews/review_comments.html', {"comment_form" : comment_form})
 
+# edit comments
 @login_required
 def comment_edit(request, review_id, comment_id):
     review = get_object_or_404(Review, id=review_id)
@@ -52,7 +53,7 @@ def comment_edit(request, review_id, comment_id):
         comment_form = CommentUpdateForm()
     return render(request, 'comments/edit_comments.html', {"comment_form" : comment_form})
 
-
+# delete comments
 @login_required
 def comment_remove(request, review_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
@@ -88,6 +89,9 @@ def profile(request):
   }
   return render(request, 'profile.html',context)
 
+##################################
+# USER - LOGIN - SIGNUP
+##################################
 # Add signup view:
 def signup(request):
   registered = False
