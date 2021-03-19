@@ -25,7 +25,7 @@ def reviews_detail(request, review_id):
   }  
   return render(request, "reviews/review_detail.html", context)
 
-
+# Add comments to review
 @login_required
 def add_comment_to_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
@@ -40,6 +40,7 @@ def add_comment_to_review(request, review_id):
         comment_form = CommentForm()
     return render(request, 'reviews/review_comments.html', {"comment_form" : comment_form})
 
+# edit comments
 @login_required
 def comment_edit(request, review_id, comment_id):
     review = get_object_or_404(Review, id=review_id)
@@ -52,7 +53,7 @@ def comment_edit(request, review_id, comment_id):
         comment_form = CommentUpdateForm()
     return render(request, 'comments/edit_comments.html', {"comment_form" : comment_form})
 
-
+# delete comments
 @login_required
 def comment_remove(request, review_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
@@ -88,25 +89,22 @@ def profile(request):
   }
   return render(request, 'profile.html',context)
 
+##################################
+# USER - LOGIN - SIGNUP
+##################################
 # Add signup view:
 def signup(request):
   registered = False
   if request.method == 'POST':
-    # Get info from "both" forms
-    # It appears as one form to the user on the .html page
     user_form = UserForm(data=request.POST)
     profile_form = UserProfileInfoForm(data=request.POST)
-
-    # Check to see both forms are valid
-    if user_form.is_valid() and profile_form.is_valid():
-          
+    if user_form.is_valid() and profile_form.is_valid():   
       # Save User Form to Database
       user = user_form.save()
       # Hash the password
       user.set_password(user.password)
       # Update with Hashed password
       user.save()
-
       # Now we deal with the extra info!
       # Can't commit yet because we still need to manipulate
       profile = profile_form.save(commit=False)
@@ -118,21 +116,16 @@ def signup(request):
         print('found it')
         # If yes, then grab it from the POST form reply
         profile.profile_pic = request.FILES['profile_pic']
-        # Now save model
-        profile.save()
         # Registration Successful!
         registered = True
       else:
-        # One of the forms was invalid if this else gets called.
         print(user_form.errors,profile_form.errors)
+      profile.save()
       login(request,user)
       return redirect('profile')
   else:
-      # Was not an HTTP post so we just render the forms as blank.
     user_form = UserForm()
     profile_form = UserProfileInfoForm()
-  # This is the render and context dictionary to feed
-  # back to the registration.html file page.
   context = {'user_form': user_form, 'profile_form':profile_form, 'registered':registered}
   return render(request, 'registration/signup.html', context)
 
@@ -178,10 +171,15 @@ def user_login(request):
 def review_new(request):
       review_form = ReviewForm(request.POST or None)
       if request.POST and review_form.is_valid:
-            new_review = review_form.save(commit=False)
-            new_review.author = request.user
-            new_review.save()
-            return redirect('home')
+          new_review = review_form.save(commit=False)
+          new_review.author = request.user
+          if 'review_image' in request.FILES:
+            print('found it')
+            new_review.review_image = request.FILES['review_image']
+          else:
+            print("errors")
+          new_review.save()
+          return redirect('home')
       else:
             return render(request, "reviews/review_new.html", {"review_form" : review_form})
 
@@ -191,16 +189,25 @@ def review_edit(request, review_id):
       review = Review.objects.get(id=review_id)
       review_form = ReviewForm(request.POST or None, instance=review)
       if request.POST and review_form.is_valid:
-            review_form.save()
-            return redirect('review_detail',review_id=review_id)
+          new_review = review_form.save(commit=False)
+          if 'review_image' in request.FILES:
+              print('found it')
+              new_review.review_image = request.FILES['review_image']
+          else:
+            print("errors")
+          review_form.save()
+          return redirect('review_detail',review_id=review_id)
       else:
             return render(request, 'reviews/review_edit.html',{'review':review,'review_form':review_form})
 
 # delete a review
 @login_required
 def review_delete(request,review_id):
-      Review.objects.get(id=review_id).delete()
-      return redirect('home')
+      if request.method == 'POST':
+        Review.objects.get(id=review_id).delete()
+        return redirect('home')
+      else:
+        return render(request, 'reviews/review_delete.html')
 
 
   
