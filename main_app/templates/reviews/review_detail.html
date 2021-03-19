@@ -13,15 +13,12 @@
         </div>
         <div class="card-action">
             <a href="{% url 'review_edit' review.id %}">Edit</a>
-            <form method="POST" action="{% url 'review_delete' review.id %}">
-                {% csrf_token %}
-                <input type="submit" class="btn" value="Delete">
-            </form>
+            <a href="{% url 'review_delete' review.id %}">Delete</a>
         </div>
     </div>
 
     {% comment %} Comment to add {% endcomment %}
-    <a class="btn yellow darken-2" href="{% url 'add_comment_to_review' review.id %}">comment</a>
+    <a class="btn yellow darken-2" href="{% url 'add_comment_to_review' review.id %}"> Add comment</a>
     <div class="card">
         {% if user.is_authenticated %}
             <div class="card-content grey darken-3">
@@ -37,8 +34,8 @@
                             <p>{{ comment.text|safe|linebreaks }}</p>
                             <p>Posted by: <strong>@{{ comment.user }}</strong></p>
                             {% if user.id == comment.user_id or user.id == review.author_id%}
-                                <a class="btn yellow darken-2" href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
-                                <a class="btn yellow darken-2" href="{% url 'comment_edit' review.id comment.id %}">Edit</a>
+                                <a href="{% url 'comment_edit' review.id comment.id %}">Edit</a>
+                                <a href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
                             {% endif %} 
                         </div>
                 {% endfor %}

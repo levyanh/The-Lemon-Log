@@ -178,10 +178,15 @@ def user_login(request):
 def review_new(request):
       review_form = ReviewForm(request.POST or None)
       if request.POST and review_form.is_valid:
-            new_review = review_form.save(commit=False)
-            new_review.author = request.user
+          new_review = review_form.save(commit=False)
+          new_review.author = request.user
+          if 'review_image' in request.FILES:
+            print('found it')
+            new_review.review_image = request.FILES['review_image']
             new_review.save()
-            return redirect('home')
+          else:
+            print("errors")
+          return redirect('home')
       else:
             return render(request, "reviews/review_new.html", {"review_form" : review_form})
 
@@ -199,8 +204,11 @@ def review_edit(request, review_id):
 # delete a review
 @login_required
 def review_delete(request,review_id):
-      Review.objects.get(id=review_id).delete()
-      return redirect('home')
+      if request.method == 'POST':
+        Review.objects.get(id=review_id).delete()
+        return redirect('home')
+      else:
+        return render(request, 'reviews/review_delete.html')
 
 
   
