@@ -1,23 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<<<<<<< HEAD
-<h1>Add A New Review</h1>
-<form method="POST" action="{% url 'review_new' %}">
-    {% csrf_token %}
-    {{ review_form.as_p }}
-    <input type="submit" class="btn yellow darken-2" value="Add Review">
-</form>
-=======
 <div class="addreview">
-    <h1>Create a new Review Page ---></h1>
+    <h1>Create A New Review</h1>
 
     <form method="POST" enctype="multipart/form-data" action="{% url 'review_new' %}">
         {% csrf_token %}
         {{ review_form.as_p }}
-        <input type="submit" class="btn" value="Add Review">
+        <input type="submit" class="btn yellow darken-2" value="Add Review">
     </form>
 </div>
->>>>>>> 0535f31ec788edd719bb37e8a2840343c483e786
 {% endblock content %}
 

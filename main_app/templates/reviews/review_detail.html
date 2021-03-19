@@ -13,14 +13,7 @@
         </div>
         <div class="card-action">
             <a href="{% url 'review_edit' review.id %}">Edit</a>
-<<<<<<< HEAD
-            <form method="POST" action="{% url 'review_delete' review.id %}">
-                {% csrf_token %}
-                <input type="submit" class="btn yellow darken-2" value="Delete">
-            </form>
-=======
             <a href="{% url 'review_delete' review.id %}">Delete</a>
->>>>>>> 0535f31ec788edd719bb37e8a2840343c483e786
         </div>
     </div>
     {% comment %} Comment to add {% endcomment %}

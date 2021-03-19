@@ -2,12 +2,8 @@
 
 {% block content %}
     <h1>Edit Review</h1>
-<<<<<<< HEAD
-    <form method="POST" action="{% url 'review_edit' review.id %}">
-=======
 
     <form method="POST" enctype="multipart/form-data">
->>>>>>> 0535f31ec788edd719bb37e8a2840343c483e786
         {% csrf_token %}
         {{ review_form.as_p }}
         <input type="submit" class="btn yellow darken-2" value="Edit Review">
