@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Edit Review</h1>
 
-    <form method="POST" action="{% url 'review_edit' review.id %}">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ review_form.as_p }}
         <input type="submit" class="btn" value="Edit Review">
