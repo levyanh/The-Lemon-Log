@@ -1,10 +1,10 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <h1>New comment</h1>
     <form method="POST">
         {% csrf_token %}
         {{ comment_form.as_p }}
-        <input type="submit" class="btn yellow darken-2" value="Haha">
+        <input type="submit" class="btn yellow darken-2" value="Add Comment">
     </form>
 {% endblock content %}

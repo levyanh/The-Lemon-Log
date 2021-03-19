@@ -1,4 +1,4 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
     <h1>Edit Review</h1>
@@ -6,6 +6,6 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ review_form.as_p }}
-        <input type="submit" class="btn" value="Edit Review">
+        <input type="submit" class="btn yellow darken-2" value="Edit Review">
     </form> 
 {% endblock content %}

@@ -1,8 +1,9 @@
-{% extends "base2.html" %}
+{% extends "base.html" %}
+
 {% block content %}
   <form action="" method="post">
     {% csrf_token %}
     <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input class='btn' type="submit" value="Delete" />
+    <input class='btn red' type="submit" value="Delete" />
   </form>
 {% endblock %}
