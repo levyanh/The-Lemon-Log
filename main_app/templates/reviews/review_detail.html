@@ -15,7 +15,7 @@
             <a href="{% url 'review_edit' review.id %}">Edit</a>
             <form method="POST" action="{% url 'review_delete' review.id %}">
                 {% csrf_token %}
-                <input type="submit" class="btn" value="Delete">
+                <input type="submit" class="btn yellow darken-2" value="Delete">
             </form>
         </div>
     </div>
