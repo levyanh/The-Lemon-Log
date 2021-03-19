@@ -8,11 +8,15 @@ from .models import Profile, Review, Comment
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 # Add home view:
 def home(request):
-  review = Review.objects.all()
-  return render(request, 'home.html',{"reviews":review})
+    review = Review.objects.all()
+    paginator = Paginator(review, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'home.html',{"page_obj":page_obj})
   
 # Add review_detail:
 def reviews_detail(request, review_id):
