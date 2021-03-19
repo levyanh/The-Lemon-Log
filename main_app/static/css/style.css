@@ -19,8 +19,7 @@ main {
 label {
   text-transform: uppercase;
 }
-nav {
-  background:transparent !important;   
+nav { 
   position: fixed;
   z-index: 9999;
 }
