@@ -10,7 +10,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  display: flex;
+  display: grid;
   min-height: 100vh;
   flex-direction: column;
   color: white;
@@ -20,8 +20,8 @@ body {
 main {
   flex: 1 0 auto;
 }
-#main-container {
-  margin: 100px;
+.main-container {
+  margin: 100px 200px 100px 200px;
 }
 label {
   text-transform: uppercase;
@@ -44,30 +44,38 @@ nav ul li a {
   width: 100%;
   height: 100%;
 }
-
+section .slider {
+  width: 100%;
+}
 footer.page-footer {
   background: rgba(0, 0, 0, 0.2);
   margin-bottom: 0;
   text-align: center;
 }
 
-.box {
+/* .box {
   margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 3em;
   grid-auto-rows: auto;
+  } */
+  .box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+    padding: 20px;
+    grid-gap: 40px;
   }
-
-  
 .row {
   padding-right: 30px;
 }
 #review {
-    width: 550px; 
-    height: 380px; 
+    width: 100%;
+    height: 400px;
     object-fit: cover;
-}
+    display: block;
+  }
+
 .avarta {
   border-radius: 50%;
   height: 150px;
@@ -76,3 +84,8 @@ footer.page-footer {
   text-align: center;
 }
 
+@media screen and (max-width: 600px) {
+  .main-container {
+    margin: 100px 70px 100px 70px;
+  }
+}

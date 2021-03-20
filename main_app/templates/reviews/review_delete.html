@@ -4,7 +4,7 @@
 
     <form method="POST" action="">
         {% csrf_token %}
-        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <h4>Are you sure you want to delete the review {{ object }}?</h4><br>
         <input class='btn red' type="submit" value="Delete" />  
     </form>
 
