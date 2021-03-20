@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat&display=swap');
 
-h2 {
+h1 {
   font-family: 'Abril Fatface', cursive;
   color: rgb(241, 213, 52);
+}
+h2 {
+  font-family: 'Abril Fatface', cursive;
+  color:white;
+  text-align: center;
+  padding: 50px 0 50px 0;
 }
 body {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/media/signup.jpg');
@@ -20,7 +26,6 @@ body {
 main {
   flex: 1 0 auto;
 }
-
 .main-container {
   margin: 100px 200px 100px 200px;
 }
@@ -54,70 +59,58 @@ footer.page-footer {
   margin-bottom: 0;
   text-align: center;
 }
-
-/* .box {
-  margin-top: 50px;
+.box {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 3em;
-  grid-auto-rows: auto;
-  } */
-  .box {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
-    padding: 20px;
-    grid-gap: 40px;
+  grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+  padding: 20px;
+  grid-gap: 40px;
   }
 .row {
   padding-right: 30px;
 }
-#review {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    display: block;
-  }
-
-.avarta {
+#avarta {
   border-radius: 50%;
   height: 150px;
   width: 150px;
-  margin: 20px 20px 20px;
+  margin: 20px 10px 20px;
+  text-align: center;
+}
+#review {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  }
+#review-detail {
+  width: 800px;
+  height: 50%;
+  object-fit: cover;
+}
+#card-content {
+  
+}
+.login, .signUp{
+  margin: 0 auto;
+  display: block;
+  width: 80%;
+  margin-top: 10%;
+  text-align: center;
+}
+form {
+  padding: 5%;
+  margin-top:10%;
+  margin: 0 auto;
+  align-items: center;
+  background: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
 }
 
 @media screen and (max-width: 600px) {
   .main-container {
-    margin: 100px 70px 100px 70px;
+    margin: 50px 20px 50px 20px;
   }
-}
- 
- .login, .signUp{
-   margin: 0 auto;
-   display: block;
-   width: 80%;
-   margin-top: 10%;
-   text-align: center;
-   color:rgb(243, 255, 19);
- }
-
- form{
-   color:rgb(243, 255, 19);
-   padding: 5%;
-   margin-top:10%;
-   margin: 0 auto;
-   align-items: center;
-   background: url("/media/hello.jpg");
-   background-repeat: no-repeat;
-   background-size: cover;
-   max-width: 800px;
-   position: relative;
-   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-   text-align: center;
- }
-
- #main-container {
-  margin: 10px;
-  margin-top: 80px;
-}
-

@@ -1,24 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <div class="card grey darken-3">
-    <div class="card-image">
-        <img src="{{review.review_image.url}}">
-        <div class="card-content">         
-            <h4>{{review.title}}</h4>
-            <p>Rating: {{review.rating}}</p>
-            <p>Author: {{review.author}}</p>
-            <p>Author email: {{review.author.email}}</p><br>
-            <p>{{review.description}}</p>
-        </div>
-        <div class="card-action">
-            <a href="{% url 'review_edit' review.id %}">Edit</a>
-            <a href="{% url 'review_delete' review.id %}">Delete</a>
-        </div>
+    <h2>{{review.title}}</h2>
+    <div class="center">
+        <img id="review-detail" src="{{review.review_image.url}}">
     </div>
-    {% comment %} Comment to add {% endcomment %}
-    <a class="btn yellow darken-2" href="{% url 'add_comment_to_review' review.id %}"> Add comment</a>
+    <div class="card-content"> 
+        <img id="avarta" src="{{ review.author.profile.profile_pic.url }}">
+        <p>Published Date:{{review.created_date|date:' d/m/Y'}}</p>
+        <p>Author: {{review.author}}</p>
+        <p>Rating: {{review.rating}}</p><br>
+        <p>{{review.description}}</p>
+    </div>
+    <div class="card-action">
+        <a href="{% url 'review_edit' review.id %}">Edit</a>
+        <a href="{% url 'review_delete' review.id %}">Delete</a><br>
+        <br><a class="btn yellow darken-2" href="{% url 'add_comment_to_review' review.id %}"> Add comment</a>
+    </div>
     <div class="card">
         {% if user.is_authenticated %}
             <div class="card-content grey darken-3">
