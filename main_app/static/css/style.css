@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat&display=swap');
+
+h2 {
+  font-family: 'Abril Fatface', cursive;
+  color: rgb(241, 213, 52);
+}
 body {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/originals/e6/a0/ec/e6a0ec6f22a505603ff90fbea89031cd.jpg');
   background-repeat: no-repeat;
@@ -8,8 +14,9 @@ body {
   min-height: 100vh;
   flex-direction: column;
   color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: medium;
 }
-
 main {
   flex: 1 0 auto;
 }
@@ -19,8 +26,7 @@ main {
 label {
   text-transform: uppercase;
 }
-nav {
-  background:transparent !important;   
+nav { 
   position: fixed;
   z-index: 9999;
 }
@@ -45,7 +51,6 @@ footer.page-footer {
   text-align: center;
 }
 
-/* ---------Homepage----------- */
 .box {
   margin-top: 50px;
   display: grid;
@@ -53,10 +58,16 @@ footer.page-footer {
   grid-gap: 3em;
   grid-auto-rows: auto;
   }
+
+  
 .row {
   padding-right: 30px;
 }
-
+#review {
+    width: 550px; 
+    height: 380px; 
+    object-fit: cover;
+}
 .avarta {
   border-radius: 50%;
   height: 150px;
