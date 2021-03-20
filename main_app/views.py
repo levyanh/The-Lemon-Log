@@ -1,18 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth.forms import UserCreationForm, User
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, UserProfileInfoForm, UserUpdateForm,ProfileUpdateForm, CommentForm, CommentUpdateForm, ReviewForm
 from .models import Profile, Review, Comment
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 # Add home view:
 def home(request):
-  review = Review.objects.all()
-  return render(request, 'home.html',{"reviews":review})
+    review = Review.objects.all()
+    paginator = Paginator(review, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'home.html',{"page_obj":page_obj})
   
 # Add review_detail:
 def reviews_detail(request, review_id):
@@ -71,6 +75,8 @@ def about(request):
 # Add profile view:
 @login_required
 def profile(request):
+  review = Review.objects.filter(author= request.user.id)
+  # comment = Comment.objects.filter(user=request.user)
   if request.method == 'POST':
     u_form = UserUpdateForm(request.POST, instance=request.user)
     p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -84,6 +90,8 @@ def profile(request):
     p_form = ProfileUpdateForm(instance=request.user.profile)
   
   context = {
+    # 'comments' : comment,
+    'reviews' : review,
     'u_form' : u_form,
     'p_form' : p_form
   }

@@ -5,11 +5,12 @@ h2 {
   color: rgb(241, 213, 52);
 }
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/originals/e6/a0/ec/e6a0ec6f22a505603ff90fbea89031cd.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/media/signup.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
+  background-color: #cccccc;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -19,9 +20,6 @@ body {
 }
 main {
   flex: 1 0 auto;
-}
-#main-container {
-  margin: 100px;
 }
 label {
   text-transform: uppercase;
@@ -64,7 +62,7 @@ footer.page-footer {
   padding-right: 30px;
 }
 #review {
-    width: 550px; 
+    width: 100%; 
     height: 380px; 
     object-fit: cover;
 }
@@ -74,5 +72,46 @@ footer.page-footer {
   width: 150px;
   margin: 20px 20px 20px;
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-image{
+    display:flex;
+    flex-wrap: wrap;
+  }
+  #review {
+    width: 100%; 
+    height: 380px; 
+    object-fit: cover;
+  }
+}
+ 
+ .login, .signUp{
+   margin: 0 auto;
+   display: block;
+   width: 80%;
+   margin-top: 10%;
+   text-align: center;
+   color:rgb(243, 255, 19);
+ }
+
+ form{
+   color:rgb(243, 255, 19);
+   padding: 5%;
+   margin-top:10%;
+   margin: 0 auto;
+   align-items: center;
+   background: url("/media/hello.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+   max-width: 800px;
+   position: relative;
+   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+   text-align: center;
+ }
+
+ #main-container {
+  margin: 10px;
+  margin-top: 80px;
 }
 
