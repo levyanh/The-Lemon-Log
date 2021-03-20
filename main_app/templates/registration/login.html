@@ -2,8 +2,8 @@
 
 {% block content %}
 <div class="login">
-  <h1>Log In</h1>
   <form method="post" action="{% url 'user_login' %}" class="lform">
+    <h4>Log In</h4>
     {% csrf_token %}
     <label for="username">Username:</label>
     <input type="text" name="username">
