@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth.forms import UserCreationForm, User
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, UserProfileInfoForm, UserUpdateForm,ProfileUpdateForm, CommentForm, CommentUpdateForm, ReviewForm
 from .models import Profile, Review, Comment
@@ -75,6 +75,8 @@ def about(request):
 # Add profile view:
 @login_required
 def profile(request):
+  review = Review.objects.filter(author= request.user.id)
+  # comment = Comment.objects.filter(user=request.user)
   if request.method == 'POST':
     u_form = UserUpdateForm(request.POST, instance=request.user)
     p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -88,6 +90,8 @@ def profile(request):
     p_form = ProfileUpdateForm(instance=request.user.profile)
   
   context = {
+    # 'comments' : comment,
+    'reviews' : review,
     'u_form' : u_form,
     'p_form' : p_form
   }

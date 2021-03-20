@@ -1,20 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="profile">
-<h1 class="center">Welcome {{ user.username }}</h1>
-{% if user.is_authenticated %}
-  <div class="center">
-    <img class="avarta" src="{{ user.profile.profile_pic.url }}" alt="no img">
-    <p>Join date: {{user.date_joined}}</p>
-    <p>Last login On: {{user.last_login}}</p> <br>
-    <h4>Update your profile</h4>
-  </div>
-    <form enctype="multipart/form-data" method="POST">
-      {% csrf_token %}
-      {{ u_form.as_p }}
-      {{ p_form.as_p }}<br>
-      <input type="submit" class='btn yellow darken-2' value="Update">
-    </form>
+  <h1 class="center">Welcome {{ user.username }}</h1>
+  {% if user.is_authenticated %}
+    <div class="center">
+      <img class="avarta" src="{{ user.profile.profile_pic.url }}" alt="no img">
+      <p>Join date: {{user.date_joined}}</p>
+      <p>Last login On: {{user.last_login}}</p> <br>
+      <h4>Update your profile</h4>
+    </div>
+      <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{ u_form.as_p }}
+        {{ p_form.as_p }}<br>
+        <input type="submit" class='btn yellow darken-2' value="Update">
+      </form>
+      {% for review in reviews  %}
+        <h3>{{ review.title }}</h3>
+        <div class="card-action">
+            <a href="{% url 'review_edit' review.id %}">Edit</a>
+            <a href="{% url 'review_delete' review.id %}">Delete</a>
+        </div>
+        {% comment %} {% for comment in comments  %}
+          <p>{{ comment.text }}</p>
+        {% endfor %} {% endcomment %}
+      {% endfor %}
 </div>
 {% endif %}
 {% endblock %}

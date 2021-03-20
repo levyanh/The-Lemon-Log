@@ -13,6 +13,7 @@
               <p>Rating: {{review.rating}}</p>
               <p>Author: {{review.author}}</p><br>
               <p>{{review.description|truncatewords:30}}<p>
+              <p>Published Date:{{review.created_date|date:'d-m-Y'}}</p>
             </div>
             <div class="card-action black">
               <a class="yellow-text darken-2" href="{% url 'review_detail' review.id %}">Read more</a>
