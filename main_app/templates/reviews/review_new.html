@@ -2,9 +2,8 @@
 
 {% block content %}
 <div class="addreview">
-    <h1>Create A New Review</h1>
-
     <form method="POST" enctype="multipart/form-data" action="{% url 'review_new' %}">
+        <h4>Create A New Review</h4>
         {% csrf_token %}
         {{ review_form.as_p }}
         <input type="submit" class="btn yellow darken-2" value="Add Review">
