@@ -2,7 +2,7 @@
 
 h2 {
   font-family: 'Abril Fatface', cursive;
-  color: rgb(245, 241, 26);
+  color: rgb(241, 213, 52);
 }
 body {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/originals/e6/a0/ec/e6a0ec6f22a505603ff90fbea89031cd.jpg');
@@ -51,7 +51,6 @@ footer.page-footer {
   text-align: center;
 }
 
-/* ---------Homepage----------- */
 .box {
   margin-top: 50px;
   display: grid;
