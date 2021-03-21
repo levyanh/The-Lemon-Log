@@ -15,18 +15,41 @@
         {{ p_form.as_p }}<br>
         <input type="submit" class='btn yellow darken-2' value="Update">
       </form>
-      <div class="center">
-        <h4>My Reviews</h4>
-        {% for review in reviews  %}
-        <h3>{{ review.title }}</h3>
-        <div class="card-action">
-            <a href="{% url 'review_edit' review.id %}">Edit</a>
-            <a href="{% url 'review_delete' review.id %}">Delete</a>
+      <div class="row" style="background-color: black; margin-top:30px;">
+        <div class="col s6">
+          <div class="card" style="background-color: black;">
+            <h4>My Reviews</h4>
+            {% for review in reviews  %}
+              {% if review %}
+                <p><a href="{% url 'review_detail' review.id %}">{{ review.title }}</a></p>
+                <div class="card-action">
+                    <a href="{% url 'review_edit' review.id %}">Edit</a>
+                    <a href="{% url 'review_delete' review.id %}">Delete</a>
+                </div>
+              {% else %}
+                <p>No reviews yet,</p><br>
+                <p><a href="{% url 'review_new' %}">Create one</a></p>
+              {% endif %} 
+            {% endfor %}
+          </div>
         </div>
-        {% comment %} {% for comment in comments  %}
-          <p>{{ comment.text }}</p>
-        {% endfor %} {% endcomment %}
-        {% endfor %}
+        <div class="col s6">
+          <div class="card" style="background-color: black;">
+            <h4>Yours comments</h4>
+            {% for comment in comments  %}
+              {% if comment %}
+                <p>{{ comment.text }}</p>
+                <p>You commented on the review: <span><a href="{% url 'review_detail' comment.review.id %}">{{ comment.review}}</a></span></p>
+                <div class="card-action">
+                  <a href="{% url 'comment_edit' comment.review.id comment.id %}">Edit</a>
+                  <a href="{% url 'comment_remove' comment.review.id comment.id%}">Delete</a>
+                </div>
+              {% else %}
+                <p>No commnets yet</p>
+              {% endif %}
+            {% endfor %} 
+          </div>
+        </div>
       </div>
 </div>
 {% endif %}
