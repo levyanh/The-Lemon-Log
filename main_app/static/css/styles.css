@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat&display=swap');
 
-h2 {
+h1, h2, h4 {
   font-family: 'Abril Fatface', cursive;
   color: rgb(241, 213, 52);
 }
+.title {
+  text-align: center;
+  padding: 50px 0 50px 0;
+}
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/media/signup.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/media/signup.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -20,14 +24,12 @@ body {
 main {
   flex: 1 0 auto;
 }
-
 .main-container {
   margin: 100px 200px 100px 200px;
 }
-
 label {
   text-transform: uppercase;
-}
+  }
 nav { 
   position: fixed;
   z-index: 9999;
@@ -40,11 +42,8 @@ nav ul li a {
   color: rgb(241, 213, 52);
 }
 .logo {
-  width: 110px;
-}
-.logo img {
-  width: 100%;
-  height: 100%;
+  width: 80px;
+  z-index: 9999;
 }
 .slider {
   width: 100%;
@@ -54,15 +53,7 @@ footer.page-footer {
   margin-bottom: 0;
   text-align: center;
 }
-
-/* .box {
-  margin-top: 50px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 3em;
-  grid-auto-rows: auto;
-  } */
-  .box {
+.box {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
     padding: 20px;
@@ -71,65 +62,63 @@ footer.page-footer {
 .row {
   padding-right: 30px;
 }
+.about {
+  text-align: left;
+  margin: 0 20px 0 20px;
+}
 #review {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    display: block;
   }
-
+#author-photo {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  margin: 20px 20px 20px;
+  text-align: center;
+}
 .avarta {
   border-radius: 50%;
   height: 150px;
   width: 150px;
   margin: 20px 20px 20px;
   text-align: center;
-}
-
+  }
+  .image {
+    width: 100%;
+    background-image: cover;
+  }
+  form {
+  color:rgb(252, 252, 251);
+  padding: 5%;
+  margin-top:10%;
+  margin: 0 auto;
+  align-items: center;
+  background: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  text-align: center;
+    }
 @media screen and (max-width: 600px) {
-  .main-container {
-    margin: 0 auto;
+.logo {
+  width: 70px;
+}
+.main-container {
+  margin: 0 auto;
+  }
+.login, .signUp {
+  margin: 0 auto;
+  display: block;
+  width: 80%;
+  margin-top: 10%;
+  text-align: center;
+  color:rgb(248, 248, 235);
+  }
+  footer.page-footer { 
+    font-size: 10px;
   }
 }
- 
- .login, .signUp{
-   margin: 0 auto;
-   display: block;
-   width: 80%;
-   margin-top: 10%;
-   text-align: center;
-   color:rgb(248, 248, 235);
- }
-
- form{
-   color:rgb(252, 252, 251);
-   padding: 5%;
-   margin-top:10%;
-   margin: 0 auto;
-   align-items: center;
-   background: url("/media/hello.jpg");
-   background-repeat: no-repeat;
-   background-size: cover;
-   max-width: 800px;
-   position: relative;
-   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-   text-align: center;
- }
-
- .main-container {
-  margin-top: 80px;
-}
-
-/* #review-img{
-  background-repeat: no-repeat;
-  height:800px;
-}
-
-.rimg{
-  display:flex;
-  flex-direction: row;
-}
-
-#profile-img{
-  
-} */
