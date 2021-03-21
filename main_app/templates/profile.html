@@ -20,7 +20,7 @@
           <div class="row" style="background-color: black; margin-top:30px;">
             <div class="col s6">
               <div class="card" style="background-color: black;">
-                <h4>My Reviews</h4>
+                <h5>My Reviews</h5>
                 {% for review in reviews  %}
                   {% if review %}
                     <p><a href="{% url 'review_detail' review.id %}">{{ review.title }}</a></p>
@@ -37,7 +37,7 @@
             </div>
             <div class="col s6">
               <div class="card" style="background-color: black;">
-                <h4>Yours comments</h4>
+                <h5>Recent comments</h5>
                 {% for comment in comments  %}
                   {% if comment %}
                     <p>{{ comment.text }}</p>
