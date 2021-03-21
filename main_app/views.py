@@ -76,7 +76,7 @@ def about(request):
 @login_required
 def profile(request):
   review = Review.objects.filter(author= request.user.id)
-  # comment = Comment.objects.filter(user=request.user)
+  comment = Comment.objects.filter(user=request.user)
   if request.method == 'POST':
     u_form = UserUpdateForm(request.POST, instance=request.user)
     p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -90,7 +90,7 @@ def profile(request):
     p_form = ProfileUpdateForm(instance=request.user.profile)
   
   context = {
-    # 'comments' : comment,
+    'comments' : comment,
     'reviews' : review,
     'u_form' : u_form,
     'p_form' : p_form
