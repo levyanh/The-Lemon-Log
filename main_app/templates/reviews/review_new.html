@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="addreview">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'review_new' %}">
+        <h4>Create A New Review</h4>
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <input type="submit" class="btn yellow darken-2" value="Add Review">
+    </form>
+</div>
+{% endblock content %}
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="signUp">
+  {% if registered %}
+  <h1>Thank you for registering!</h1>
+  {% else %}
+    <form enctype="multipart/form-data" method="POST" class="sform">
+      <h4>Sign Up</h4>
+      {% csrf_token %}
+      {{ user_form.as_p }}<br>
+      <input type="submit" class='btn yellow darken-2' value="SignUp">
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}

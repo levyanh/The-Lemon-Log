@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        <h5>Are you sure you want to delete your review {{object}}?</h5><br>
+        <input class='btn red' type="submit" value="Delete"/>  
+    </form>
+{% endblock content %}

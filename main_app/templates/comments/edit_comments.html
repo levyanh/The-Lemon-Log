@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST">
+        <h4>Edit comment</h4>
+        {% csrf_token %}
+        {{ comment_form.as_p }} <br>
+        <input type="submit" class="btn yellow darken-2" value="Submit">
+    </form>
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card grey darken-3">
+    <h2 class="title">{{review.title}}</h2>
+    <div class="card-image">
+        <img id="review center" src="{{review.review_image.url}}">
+        <div class="card-content"> 
+            <img id="author-photo" src="{{ review.author.profile.profile_pic.url }}">
+            <p>Author: {{review.author}}</p>
+            <p>Author email: {{review.author.email}}</p>      
+            <p>Rating: {{review.rating}}</p>
+            <p>Published Date:{{review.created_date|date:' d-m-Y'}}</p><br>
+            <p>{{review.description}}</p>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'review_edit' review.id %}">Edit</a>
+            <a href="{% url 'review_delete' review.id %}">Delete</a>
+        </div>
+    </div>
+    {% comment %} Comment to add {% endcomment %}
+<div class="center">
+    <a class="btn yellow darken-2" href="{% url 'add_comment_to_review' review.id %}"> Add comment</a>
+</div>
+<div class="card">
+    {% if user.is_authenticated %}
+        <div class="card-content grey darken-3">
+            {% if comments.count == 0 %}
+                <h4>No comments posted!</h4>
+            {% else %}
+                <h4>{{ comments.count }} comments</h4>
+            {% endif %}
+            {% for comment in comments %}
+                <br>
+                    <div class="card-action">
+                        {{ comment.created_date }}
+                        <p>{{ comment.text|safe|linebreaks }}</p>
+                        <p>Posted by: <strong>{{ comment.user }}</strong></p>
+                        {% if user.id == comment.user_id or user.id == review.author_id%}
+                            <a href="{% url 'comment_edit' review.id comment.id %}">Edit</a>
+                            <a href="{% url 'comment_remove' review.id comment.id%}">Delete</a>
+                        {% endif %} 
+                    </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}
+
+

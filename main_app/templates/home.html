@@ -1,0 +1,45 @@
+{% extends 'base_home.html' %}
+
+{% block content %}
+<div class="box">
+  {% for review in page_obj %}
+    <div class="row">
+        <div class="card grey darken-3">
+          <div class="card-image">
+            <img id="review" src="{{ review.review_image.url }}">
+             <!-- <img src="{{ review.author.profile.profile_pic.url }}" alt="no img"> -->
+            <div class="card-content">         
+              <h4>{{review.title}}</h4>
+              <p>Author: {{review.author}}</p>
+              <p>Rating: {{review.rating}}</p>
+              <p>Published Date:{{review.created_date|date:' d-m-Y'}}</p><br>
+              <p>{{review.description|truncatewords:38}}<p>
+            </div>
+            <div class="card-action black">
+              <a class="yellow-text darken-2" href="{% url 'review_detail' review.id %}">Read more</a>
+            </div>
+          </div>
+        </div>
+    </div>
+  {% endfor %}
+  <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        <ul class="pagination">
+          {% if page_obj.has_next %}
+            <li class="active"><a href="?page={{ page_obj.next_page_number }}">next</a></li>
+            <li class="waves-effect"><a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+          {% endif %}
+        </u>
+        
+    </span>
+  </div>
+</div>
+{% endblock %}
