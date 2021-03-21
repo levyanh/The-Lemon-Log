@@ -3,7 +3,7 @@
 {% block content %}
   <form action="" method="post">
     {% csrf_token %}
-    <h4>Are you sure you want to delete your comment {{ object }}?</h4><br>
+    <p>Are you sure you want to delete your comment {{ object }}?</p><br>
     <input class='btn red' type="submit" value="Delete" />
   </form>
 {% endblock %}
