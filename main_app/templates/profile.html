@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="profile">
-  <h4 class="center">Welcome {{ user.username }}</h4>
+  <h2 class="center">Welcome {{ user.username }}</h2>
   {% if user.is_authenticated %}
     <div class="center">
-      <img class="avarta" src="{{ user.profile.profile_pic.url }}" alt="no img">
+      <img class="avarta" src="{{ user.profile.profile_pic.url }}">
       <p>Join date: {{user.date_joined}}</p>
       <p>Last login On: {{user.last_login}}</p> <br>
-      <h4>Update your profile</h4>
+      <h4>Update Your Profile</h4>
     </div>
       <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
@@ -15,10 +15,10 @@
         {{ p_form.as_p }}<br>
         <input type="submit" class='btn yellow darken-2' value="Update">
       </form>
-      <div class="center">
-        <h4>My Reviews</h4>
+      <div class="activity">
+        <h4>My Activity History</h4>
         {% for review in reviews  %}
-        <h3>{{ review.title }}</h3>
+        <p>{{ review.title }}</p>
         <div class="card-action">
             <a href="{% url 'review_edit' review.id %}">Edit</a>
             <a href="{% url 'review_delete' review.id %}">Delete</a>
