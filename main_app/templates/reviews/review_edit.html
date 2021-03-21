@@ -4,7 +4,7 @@
     <form method="POST" enctype="multipart/form-data">
         <h4>Edit Your Review</h4>
         {% csrf_token %}
-        {{ review_form.as_p }}
-        <input type="submit" class="btn yellow darken-2" value="Edit Review">
+        {{ review_form.as_p }} <br>
+        <input type="submit" class="btn yellow darken-2" value="Submit">
     </form> 
 {% endblock content %}

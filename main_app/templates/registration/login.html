@@ -5,9 +5,9 @@
   <form method="post" action="{% url 'user_login' %}" class="lform">
     <h4>Log In</h4>
     {% csrf_token %}
-    <label for="username">Username:</label>
+    <label class="left algin" for="username">Username:</label>
     <input type="text" name="username">
-    <label for="password">Password:</label>
+    <label class="left algin" for="password">Password:</label>
     <input type="password" name="password">
     <input type="submit" class='btn yellow darken-2' value="Login">
   </form>

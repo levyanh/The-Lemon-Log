@@ -13,7 +13,7 @@ from django.core.paginator import Paginator
 # Add home view:
 def home(request):
     review = Review.objects.all()
-    paginator = Paginator(review, 8)
+    paginator = Paginator(review, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'home.html',{"page_obj":page_obj})
