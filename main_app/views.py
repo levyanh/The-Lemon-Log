@@ -48,7 +48,6 @@ def home(request):
 # Add review_detail:
 def reviews_detail(request, review_id):
   review = get_object_or_404(Review, id=review_id)
-  # comments = review.comments.filter(active=True)
   comments = review.comments.all()
   context = {
     "comments" : comments,

@@ -22,6 +22,7 @@
 </head>
 <body>
   <header>
+    <!-- navbar -->
     <div class="navbar-fixed">
       <nav class="black">
           <div class="nav-wrapper">
@@ -43,7 +44,7 @@
           </div>
       </nav>
     </div>
-
+<!-- this receives a signal from the navbar from the menu icon in the mobile view to open the fields -->
     <ul class="side-nav" id="mobile-demo">
         <li><a href="{% url 'about' %}">About</a></li>
       {% if user.is_authenticated %}
