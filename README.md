@@ -106,7 +106,7 @@ A user is authorized to perform certain actions on the site, according to the fo
 
 <img src="media/review-detail.png">
 
-**Add review page**
+**Add new review**
 
 <img src="media/add-review.png">
 
@@ -120,7 +120,7 @@ A user is authorized to perform certain actions on the site, according to the fo
 
 **Add comment**
 
-<img src="media/add-cmment.png">
+<img src="media/add-comment.png">
 
 **Edit comment**
 
