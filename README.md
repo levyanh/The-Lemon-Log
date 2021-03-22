@@ -1,11 +1,15 @@
+# Project name: Lemon Log
+
+## Project link: 
+https://lemonlogtech.herokuapp.com/
+
 ## Group members:
 1. Abinash Mudbhari
 2. Anh Vy Le
-## Project name: Lemon Log
-## Project link: https://lemonlogtech.herokuapp.com/
+
 ## Project description:
 **Lemon Log** is a tech review site where experts post reviews of tech products to inform their users of what to buy and what to skip. Users can post comments on reviews to share feedback or their own experiences.
- 
+
 ## Technologies used:
 - Language: HTML, CSS, JS, Python
 - Framework: Django
@@ -77,5 +81,40 @@ A user is authorized to perform certain actions on the site, according to the fo
 14. Admins should be able to upload and host their own image files to use in reviews on the site.
 
 ## Wireframes:
+**Homepage**
+<img src="media/homepage.png">
+
+**About page**
+<img src="media/about.png">
+
+**Signup page**
+<img src="media/signup.png">
+
+**Login page**
+<img src="media/login.png">
+
+**Profile page**
+<img src="media/profile.png">
+
+**Add review page**
+<img src="media/add-review.png">
+
+**Review detail page**
+<img src="media/review-detail.png">
+
+**Edit review**
+<img src="media/edit-review.png">
+
+**Delete review**
+<img src="media/delete-review.png">
+
+**Edit comment**
+<img src="media/edit-comment.png">
+
+**Delete comment**
+<img src="media/delete-comment.png">
+
+
+
 
 
