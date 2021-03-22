@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,11 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
+AWS_ACCESS_KEY_ID='AKIAW6DBIIU7TXXSJEBE'
+AWS_SECRET_ACCESS_KEY='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'
+AWS_STORAGE_BUCKET_NAME= 'lemonlogtech1'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

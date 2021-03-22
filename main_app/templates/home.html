@@ -7,13 +7,12 @@
         <div class="card grey darken-3">
           <div class="card-image">
             <img id="review" src="{{ review.review_image.url }}">
-             <!-- <img src="{{ review.author.profile.profile_pic.url }}" alt="no img"> -->
             <div class="card-content">         
               <h4>{{review.title}}</h4>
               <p>Author: {{review.author}}</p>
               <p>Rating: {{review.rating}}</p>
               <p>Published Date:{{review.created_date|date:' d-m-Y'}}</p><br>
-              <p>{{review.description|truncatewords:38}}<p>
+              <p>{{review.description|truncatewords:10}}<p>
             </div>
             <div class="card-action black">
               <a class="yellow-text darken-2" href="{% url 'review_detail' review.id %}">Read more</a>
