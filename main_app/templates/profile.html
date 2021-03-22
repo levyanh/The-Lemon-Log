@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
+
+{% load humanize %}
+
 {% block content %}
 <div class="profile">
   <h2 class="center">Welcome {{ user.username }}</h2>
   {% if user.is_authenticated %}
     <div class="center">
       <img class="avarta" src="{{ user.profile.profile_pic.url }}">
-      <p>Join date: {{user.date_joined}}</p>
-      <p>Last login On: {{user.last_login}}</p> <br>
+      <p>Join date: {{user.date_joined|naturaltime}}</p>
+      <p>Last login On: {{user.last_login|naturaltime}}</p> <br>
       <h4>Update Your Profile</h4>
     </div>
       <form enctype="multipart/form-data" method="POST">

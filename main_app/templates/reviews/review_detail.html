@@ -50,7 +50,7 @@
             {% for comment in comments %}
                 <br>
                     <div class="card-action">
-                        {{ comment.created_date }}
+                        {{ comment.created_date|naturaltime }}
                         <p>{{ comment.text|safe|linebreaks }}</p>
                         <p>Posted by: <strong>{{ comment.user }}</strong></p>
                         {% if user.id == comment.user_id or user.id == review.author_id%}
