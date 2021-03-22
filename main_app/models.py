@@ -43,12 +43,6 @@ class Comment(models.Model):
     def __str__(self):
         return 'Comment {} by {}'.format(self.text, self.user)
 
-class Photo(models.Model):
-    url = models.CharField(max_length=200)
-    review = models.ForeignKey(Review, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"Photo for review_id: {self.review_id} @{self.url}"
 
 
 
