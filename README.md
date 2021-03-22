@@ -12,7 +12,7 @@ https://lemonlogtech.herokuapp.com
 
 ## Technologies used:
 - Language: HTML, CSS, JS, Python
-- Framework: Django
+- Framework: Django, Materialize
 - Database: Postgresql
 - Deployment on: Heroku 
 
