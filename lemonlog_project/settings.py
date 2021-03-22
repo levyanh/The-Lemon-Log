@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_DIR = os.path.join(BASE_DIR,'media')
@@ -21,10 +23,10 @@ MEDIA_DIR = os.path.join(BASE_DIR,'media')
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dt9mn#2!q@*f8h-gl5#xpemv#(p7hn4tafl&3nfdkk!o1&8wzt'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -140,9 +142,9 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 import django_heroku
 django_heroku.settings(locals())
 
-AWS_ACCESS_KEY_ID='AKIAW6DBIIU7TXXSJEBE'
-AWS_SECRET_ACCESS_KEY='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'
-AWS_STORAGE_BUCKET_NAME= 'lemonlogtech1'
+AWS_ACCESS_KEY_ID=config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY=config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME=config('AWS_STORAGE_BUCKET_NAME')
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None

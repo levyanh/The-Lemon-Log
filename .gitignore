@@ -1,4 +1,5 @@
-.env/
+lemon.env/
 db.sqlite3/
 __pycache__/
 notes.txt
+.env
