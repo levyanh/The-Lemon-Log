@@ -14,10 +14,12 @@
             <p>Published Date:{{review.created_date|date:' d-m-Y'}}</p><br>
             <p>{{review.description}}</p>
         </div>
-        <div class="card-action">
-            <a href="{% url 'review_edit' review.id %}">Edit</a>
-            <a href="{% url 'review_delete' review.id %}">Delete</a>
-        </div>
+        {% if user.is_superuser or user.id == review.author_id %}
+            <div class="card-action">
+                <a href="{% url 'review_edit' review.id %}">Edit</a>
+                <a href="{% url 'review_delete' review.id %}">Delete</a>
+            </div>
+        {% endif %}
     </div>
     {% comment %} Comment to add {% endcomment %}
 <div class="center">
