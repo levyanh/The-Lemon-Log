@@ -24,7 +24,7 @@ MEDIA_DIR = os.path.join(BASE_DIR,'media')
 SECRET_KEY = 'dt9mn#2!q@*f8h-gl5#xpemv#(p7hn4tafl&3nfdkk!o1&8wzt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -33,13 +33,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main_app',
-    # 'pyuploadcare.dj',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +138,11 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
+AWS_ACCESS_KEY_ID='AKIAW6DBIIU7TXXSJEBE'
+AWS_SECRET_ACCESS_KEY='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'
+AWS_STORAGE_BUCKET_NAME= 'lemonlogtech1'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

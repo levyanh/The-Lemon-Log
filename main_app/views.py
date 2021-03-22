@@ -4,11 +4,38 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, UserProfileInfoForm, UserUpdateForm,ProfileUpdateForm, CommentForm, CommentUpdateForm, ReviewForm
-from .models import Profile, Review, Comment
+from .models import Profile, Review, Comment, Photo
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
+import uuid
+import boto3
+
+# Add these "constants" below the imports
+S3_BASE_URL = 'https://s3-ap-southeast-1.amazonaws.com/'
+BUCKET = 'lemonlogtech1'
+
+def add_photo(request, review_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            print(url)
+            # we can assign to review_id or review (if you have a review object)
+            photo = Photo(url=url, review_id=review_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('review_detail', review_id=review_id)
+
 
 # Add home view:
 def home(request):
