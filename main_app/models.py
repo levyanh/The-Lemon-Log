@@ -24,7 +24,7 @@ class Review(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['created_date']
+        ordering = ['-created_date']
 
 class Comment(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
